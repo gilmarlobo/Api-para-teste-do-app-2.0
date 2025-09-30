@@ -1,0 +1,45 @@
+# Python
+*.pyc
+*.pyo
+__pycache__/
+*.pyd
+env/
+venv/
+ENV/
+.venv/
+
+# Django
+*.log
+*.pot
+*.pyc
+*.sqlite3
+db.sqlite3
+media/
+staticfiles/
+static/
+
+# IDEs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Distribuição / Packaging
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+.eggs/
+parts/
+var/
+*.manifest
+*.spec
+
+# Dependências
+pip-log.txt
+pip-delete-this-directory.txt

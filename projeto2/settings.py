@@ -1,13 +1,15 @@
 from pathlib import Path
-import os
 
-# Build paths inside the project
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# SECURITY
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'chave_para_desenvolvimento')
-DEBUG = os.environ.get('DJANGO_DEBUG', 'False') == 'True'
-ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', '*').split(',')
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = 'django-insecure-@l$bnvto#4&4$z!o%*!#zyk3uch&7^*x=*r$#0xlh2h14c8*&h'
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = True  # para testes é melhor True
+
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 INSTALLED_APPS = [
@@ -18,12 +20,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'corsheaders',  # <- adicionado
+    'corsheaders',  # para permitir o Expo acessar a API
     'project',      # sua app
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',  # <- adicionado no topo
+    'corsheaders.middleware.CorsMiddleware',  # sempre no topo
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -52,7 +54,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'projeto2.wsgi.application'
 
-# Database (SQLite para teste)
+# Database (SQLite para testes)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -60,8 +62,8 @@ DATABASES = {
     }
 }
 
-# URL Append Slash
-APPEND_SLASH = True  # melhor para DRF
+# APPEND_SLASH ajuda a evitar erros em POSTs do DRF
+APPEND_SLASH = True
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
@@ -79,10 +81,10 @@ USE_TZ = True
 
 # Static files
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'  # necessário para deploy
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# CORS (para Expo acessar a API)
-CORS_ALLOW_ALL_ORIGINS = True  # para teste, depois restringir
+# CORS para permitir qualquer origem (para Expo)
+CORS_ALLOW_ALL_ORIGINS = True
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
